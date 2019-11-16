@@ -1,0 +1,23 @@
+{
+  "name": "user-authenticate-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thiagocom/user-authenticate-api.git",
+  "author": "ThiagoCom <thiaguinhols.com@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node main.js",
+    "watch": "nodemon main.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.11",
+    "morgan": "^1.9.1",
+    "rotating-file-stream": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

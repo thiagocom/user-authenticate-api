@@ -6,6 +6,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 
 const userRoutes = require("./routes/user.routes")
+const { authenticate } = require("./middlewares")
 
 const app = express()
 app.set("port", process.env.PORT || 8000)
@@ -23,14 +24,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
-mongoose.connect(process.env.CONNECT_STRING, { useNewUrlParser: true })
+mongoose.connect(process.env.CONNECT_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
 const { connection } = mongoose
 connection.on("error", err => console.error(err))
 mongoose.set("useFindAndModify", false)
+mongoose.set("useCreateIndex", true)
 
 app.use("/users", userRoutes)
 
-app.use("/protect", async (req, res, next) => {
+app.use("/protect", authenticate, async (req, res, next) => {
 	res.json({ message: "Welcome to development world" })
 })
 
